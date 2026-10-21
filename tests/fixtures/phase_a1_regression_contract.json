@@ -1,0 +1,224 @@
+{
+  "basis": "protected pre-Phase-A1 implementation; synthetic only; not clinician labels",
+  "corpus_sha256": "344e87032264ea6b17f53c9cef3f499cc567f09e7e6f1c544ef762e399b4dfdc",
+  "prompt_sha256": "b41db146898c4896a129e692877759ce4a932a6061ea76829f2025de8c8cc4ae",
+  "rows": [
+    {
+      "case_id": "randomized_primary",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "7a37a242d5e08ad2522c356577d04fecfd9726419f344bba81792c6340c228ef",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "43282bfe9b8af03dfd2cb03046e01bdec5d9c8b822fddca72afd61fd75bebae2",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "swap_arms",
+      "legacy_report_sha256": "7a37a242d5e08ad2522c356577d04fecfd9726419f344bba81792c6340c228ef",
+      "editorial_status": "REJECTED",
+      "expected_reason": "explicit_arm_quantity_conflict"
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "invent_statistic",
+      "legacy_report_sha256": "2c1f8f07fb9db546bc61156cab6082e6ef5f204491a6fadb14728e090e3765e5",
+      "editorial_status": "REJECTED",
+      "expected_reason": "numeric_value_unavailable"
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "significance_reversal",
+      "legacy_report_sha256": "ed7b8b0a076aee7cfa8396554b3bb1a7d1a393548b07c8e9e5dba7342f6146d8",
+      "editorial_status": "REJECTED",
+      "expected_reason": "significance_polarity_requires_source_review"
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "changed_timepoint",
+      "legacy_report_sha256": "a665ff3eafc1318fcf5f5d3cdec70424f369d362d430c2c8efeccf6f64526cd2",
+      "editorial_status": "REJECTED",
+      "expected_reason": "numeric_value_unavailable"
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "swap_endpoint",
+      "legacy_report_sha256": "9f8c3d8f9b7cdc31e2c1bd0afca920c9aacd9ca0442c80e1050a305b0fd25f01",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": "outcome_preservation_unverified"
+    },
+    {
+      "case_id": "randomized_primary",
+      "variant": "swap_population",
+      "legacy_report_sha256": "7a37a242d5e08ad2522c356577d04fecfd9726419f344bba81792c6340c228ef",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": "population_preservation_unverified"
+    },
+    {
+      "case_id": "review_uncertainty",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "7a5b0c8594f492ee14cf3aa4541f9a009f54226b3a2f13c0152387c8683645bf",
+      "editorial_status": "REJECTED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "review_uncertainty",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "33d9c610a7de6cdfda32efa78b68c1bca756099fad043563506d95ebe91be86d",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "review_uncertainty",
+      "variant": "invent_sample",
+      "legacy_report_sha256": "6555586ab6024536f9b242d759f760664bb9df34899cc1a9a26a8bf3e8db8f77",
+      "editorial_status": "REJECTED",
+      "expected_reason": "numeric_value_unavailable"
+    },
+    {
+      "case_id": "conditional_guideline",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "b8749e6264b59ca0dc4938fe4be3261888b4cd4b843a5f371832a58a488655d9",
+      "editorial_status": "REJECTED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "conditional_guideline",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "6dfbe9ae32bc9f78dd53edd583251a0c60ca3f95ffdac6a2dee451672618a35e",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "conditional_guideline",
+      "variant": "strong_recommendation",
+      "legacy_report_sha256": "92784403f8b543c2bee79709fad1e39595cf4216abbf5c56a98aa2a9a79f4975",
+      "editorial_status": "REJECTED",
+      "expected_reason": "recommendation_strength_increased"
+    },
+    {
+      "case_id": "conditional_guideline",
+      "variant": "certainty_inflation",
+      "legacy_report_sha256": "b8749e6264b59ca0dc4938fe4be3261888b4cd4b843a5f371832a58a488655d9",
+      "editorial_status": "REJECTED",
+      "expected_reason": "evidence_certainty_increased"
+    },
+    {
+      "case_id": "procedure_sequence",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "7eea5d8dc3a3d5d24a48ea6fb90fa48fc8159e12ef82d731ccfd042f8aa86139",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "procedure_sequence",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "13f5bef33580bc3d61abf3e3e5ba6feca19afc33d47e2aedb5ad6897f7de5f51",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "procedure_sequence",
+      "variant": "invent_procedural_rate",
+      "legacy_report_sha256": "add6e737db7eb6f8eced3368b6b9bbe82fa09969a3bca06c3741ef21aa4b904c",
+      "editorial_status": "REJECTED",
+      "expected_reason": "numeric_value_unavailable"
+    },
+    {
+      "case_id": "negative_result",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "a5565b9fe935ade9a749d8b3bc653a71e91b06cf8c397129347a7a23c2da2ba3",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "negative_result",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "b89dffdf22317fd4ef6b947d974cee8e894fbc1cc9c9ac62c547d75baf3ff57d",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "negative_result",
+      "variant": "negative_to_positive",
+      "legacy_report_sha256": "a202d18c6683a688babd8d2c60ef7a45ccfb7d4cf09c45532b4836eef2917a4a",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": "significance_polarity_requires_source_review"
+    },
+    {
+      "case_id": "noninferiority",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "312cf10f915d946da996e773dc4e3110c047b05cad27b4692d0587c257c42518",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "noninferiority",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "2a8907ebca9c44917d2cbe244f8cd9fbff379da8acee8933b50c17842c9e4064",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "noninferiority",
+      "variant": "noninferiority_to_superiority",
+      "legacy_report_sha256": "4ec4791b9f6acec3a79a971941852967a68b2fcbb5b1aa83ee9a121ad2d6bac2",
+      "editorial_status": "REJECTED",
+      "expected_reason": "noninferiority_or_unassessed_superiority_strengthened"
+    },
+    {
+      "case_id": "adverse_events",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "f7dd493f330e6b5baf94e8f688dc260f6b3cb857e3043634385321e77092cba7",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "adverse_events",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "278747fa21c8df1b15a1de39c963413d4e670c0b36d1a108bb78905db81b1bb0",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "adverse_events",
+      "variant": "swap_safety_arms",
+      "legacy_report_sha256": "f7dd493f330e6b5baf94e8f688dc260f6b3cb857e3043634385321e77092cba7",
+      "editorial_status": "REJECTED",
+      "expected_reason": "explicit_arm_quantity_conflict"
+    },
+    {
+      "case_id": "adverse_events",
+      "variant": "deny_events",
+      "legacy_report_sha256": "4605e7ea449d494b4c3b989e945676de34783dc19fdd2c39689b86e09e27ff1f",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": "adverse_event_negation_requires_review"
+    },
+    {
+      "case_id": "uncertain_dose",
+      "variant": "editorial_example",
+      "legacy_report_sha256": "9011db0ccdfa7976312cfee5a260af064239b06460522e1763a7082ca2ba9593",
+      "editorial_status": "REJECTED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "uncertain_dose",
+      "variant": "extractive_comparison",
+      "legacy_report_sha256": "a47e8421c0f2822d561d07108a85194470b1d14a0d77bef000fe4dbfdd5583aa",
+      "editorial_status": "REVIEW_REQUIRED",
+      "expected_reason": null
+    },
+    {
+      "case_id": "uncertain_dose",
+      "variant": "alter_dose_unit",
+      "legacy_report_sha256": "dd0615fa158e149e3a11d72223c6def818c59cded36f8a737ba57fe0e814cfd6",
+      "editorial_status": "REJECTED",
+      "expected_reason": "explicit_quantity_unit_or_sign_conflict"
+    }
+  ]
+}

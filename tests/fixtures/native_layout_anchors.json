@@ -1,0 +1,37 @@
+{
+  "source_file": "PIIS0016508515010860.pdf",
+  "pdf_sha256": "7b1e531d05683af67766e2d8b45ad0dbbdee84aa1be54c9b44c13aeeb7de934c",
+  "page_number": 3,
+  "review_method": "Poppler page rendering compared with native line spans and both independent extraction families; engineering inspection only, clinician review pending",
+  "positive": {
+    "canonical_span": {
+      "buffer_id": "full_text:sha256:202e55139bcfab6dece87141dd7ec16b44311962c4fe9014a63e2f980bf83203",
+      "char_start": 19419,
+      "char_end": 19799
+    },
+    "text_sha256": "da9b59ea6361f5608020b8b8a37d9e03243a904e38f2a16b16fc7ed5a8a22cf6",
+    "native_span": {
+      "buffer_id": "pdf:7b1e531d05683af67766e2d8b45ad0dbbdee84aa1be54c9b44c13aeeb7de934c:4f80fbb45473:raw:page:3:native-block:6:46aa0183b9eede3d63a0a0d9a242dc6073cce4355883d80f6916b3dfd0b3a6b6",
+      "char_start": 1605,
+      "char_end": 1984
+    },
+    "native_text_sha256": "e5bad5214f4d365b53b6d6cb8bd30a00d3524f8781517950b79e077f4378203c",
+    "bbox": [
+      302.9497985839844,
+      288.43280029296875,
+      545.0938110351562,
+      738.3901977539062
+    ],
+    "native_lines": 7
+  },
+  "negative": {
+    "canonical_span": {
+      "buffer_id": "full_text:sha256:202e55139bcfab6dece87141dd7ec16b44311962c4fe9014a63e2f980bf83203",
+      "char_start": 17814,
+      "char_end": 18451
+    },
+    "text_sha256": "3c23e9834f5a57c67647629dec753df3b1c2776b690601fa65edaf65024d9eec",
+    "expected_control_codepoint": 2,
+    "status": "blocked; operator cannot be inferred from the damaged native glyph"
+  }
+}

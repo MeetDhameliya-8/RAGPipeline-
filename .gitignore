@@ -1,0 +1,54 @@
+.env
+.env.*
+!.env.example
+
+auth/
+browser_profile/
+*.session
+*.cookies
+
+logs/*
+!logs/.gitkeep
+
+input_pdfs/*
+!input_pdfs/.gitkeep
+processed/*
+!processed/.gitkeep
+output/*
+!output/.gitkeep
+
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local evidence audits and generated medical review artifacts.
+/tmp/
+
+
+rag_uploads/*
+!rag_uploads/.gitkeep
+
+local_db/*
+!local_db/.gitkeep
+
+
+# Local Python environments
+.venv/
+venv/
+
+# Additional temporary files
+.pytest_tmp/
+*.sqlite
+*.sqlite3
+*.db
+
+# Windows files
+Thumbs.db
+Desktop.ini
+
+# Local secrets and credentials
+*.pem
+*.key
+credentials.json

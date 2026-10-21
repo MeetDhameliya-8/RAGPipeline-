@@ -1,0 +1,7 @@
+# Practical source-package drafting design
+
+2026-10-17. User authorizes fixing real PDF-to-chunks-to-local-DB behavior and controlled live Azure tests. Existing strict clinical-plan path remains available. Add a separately typed draft-evidence package contract at the existing ingestion/generation boundary: native text extraction support is distinct from independent clinical-concept approval.
+
+Packages own exact native block spans, unique whole-passage or ordered-line corroboration from both retained extractors, PDF byte identity and optional named original/alternate canonical references. Preserve every source warning and hold. Group only adjacent witnessed prose under known native order/section boundaries and existing character budgets. Do not merge a synthetic source document, repair glyphs/numbers or treat uncertain tables/figures as understood. Every generated package is a clinical-review draft with incomplete document coverage. Real numerical/source validators and unchanged length/schema/reference rules apply before existing local draft storage.
+
+Use the same Azure adapter, generator parser, output writing, SQLite review store and question answering. Save per-unit outcomes and continue after a localized provider/JSON failure; no accepted earlier work should disappear. Default the Admin's new uploads/retries to this practical draft path; retain strict CLI defaults. Keep old artifacts and failed-job history. Run offline regressions first, then a live pilot and only then batch recovery. No production activation.

@@ -1,0 +1,15 @@
+# P1-B1 planning contracts — recorded before implementation
+
+The planner proposes source-anchored clinical propositions, not model-invented clinical summaries. All source text remains in the existing evidence graph. Exact literal mentions can be tagged as population, intervention, endpoint, group or timeframe; co-location does not establish a clinical association. Unresolved relationships remain explicit.
+
+`ClinicalConcept` owns disjoint named canonical spans and references supporting evidence, source sections/pages, exact mentions, qualifications and dependency records. Context headings, bibliography/front matter and unclassified material remain accounted for without being promoted to clinical eligibility. Identity includes source/configuration/planner identity and anchors. Repeated source occurrences are not merged across uncertain contexts.
+
+`ClinicalUnit` groups compatible adjacent owned concepts under a bounded request budget. Neighboring definitions, populations, interventions, endpoints and qualifications are context-only evidence. Explicit table/figure references carry caption/note candidates and unresolved relationship records; absent or ambiguous relationships block affected units. Warning decisions distinguish direct affected evidence, uncertain page/document dependencies and source-independent draft units. Geometry alone never proves a graphic decorative or clinically irrelevant.
+
+`ClinicalPlan` is metadata only: concepts, ownership partition, evidence references, units, unresolved relationships and document completeness. It contains no copied article text. One shared in-memory evidence graph and reusable mapping index serve the entire plan. The existing ingestion plan remains backward-compatible for legacy callers; the actual pipeline passes its source map and builds the clinical plan once.
+
+Generation uses the current Azure-only transport and bounded request mechanism. Only eligible draft units are sent. Owned evidence and context are visibly distinguished in the request. Model output retains exactly five clinical fields plus existing operational numbering; provenance stays in diagnostics. No concept-to-chunk word-count requirement is introduced, and existing clinical checks remain active.
+
+Coverage distinguishes accounted source, generation eligibility, attempted units, validated source-supported concepts, unresolved clinical material and human approval. A generated or passing chunk does not complete unrelated concepts or context-only evidence. Conservative exact-text coverage reconciliation can leave paraphrases pending review. Partial drafts do not authorize complete-document approval. No generation-unit checkpoints, durable retries or recovery state are introduced.
+
+Persistence uses the P1-A.1 source-map storage interface with an optional internal plan field; old expanded/compressed maps remain readable. Tests precede implementation. Corpus checks preserve PDFs, raw/canonical generation text and historical output artifacts. Missing original NEJM fixtures remain unverified release requirements.

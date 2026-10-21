@@ -1,0 +1,45 @@
+# Unattended local PDF queue
+
+This implements the user's request that uploaded PDFs proceed without repeated developer intervention. It builds on the practical source-package ingestion reviewed earlier on 2026-10-17. The local review database remains separate from any production GastroAGI backend.
+
+## Behavior
+
+- A successful upload starts the unpaused queue automatically. The existing Start and Pause/Resume controls remain available. Retry Job starts processing without an additional Start click.
+- A server-side supervisor runs every two seconds. It resumes saved queued work on startup and maintains a heartbeat for this process's active job during long Azure requests. Jobs with an expired 120-second heartbeat resume through their saved source-unit and transcription caches. Browser closure does not stop processing. The Python server must be running; this change does not install an operating-system startup service.
+- Transient typed transport errors, timeouts and selected malformed model responses use saved retry timestamps, with delays of 30, 120, 600 and 1800 seconds. There are at most five queue attempts. Delayed jobs release the worker so other PDFs continue. Repeated crash recovery is also bounded. The existing Azure adapter's bounded request retries remain inside each queue attempt.
+- Configuration, authentication and quota failures need service attention rather than endless paid retries. Source-grounding/validation failures never become successful clinical content merely because a retry was requested. Unreadable sources enter source review. Unexpected exceptions retain their type without copying arbitrary exception bodies into the queue response.
+- Partial packages retain stored drafts and their output links across later failed attempts. Manual retry also preserves access to existing results. Storage read-back failure receives bounded retry.
+- Page-image recovery selects every page without a native draft package, including mixed native/scanned documents and pages after page three. It processes pages sequentially with the existing rendering budget and two-pass source agreement. One transient page failure does not discard other completed pages; provider/configuration failures remain explicit recovery signals. Completed cached transcriptions are reused.
+- Package-count limits expand to the actual document's planned units in the practical queue route. Context size remains bounded per request; supported source packages are not silently truncated at 80. The strict/default planner's existing limits remain available.
+- Candidate reuse is fingerprinted per source unit, PDF bytes, extraction configuration, source filename, reference authority, provider and prompt. A change elsewhere in the document's visual recovery plan does not force completed units to regenerate. Full fingerprints are retained in immutable candidate records. Cache paths and incidental attempt filenames are shortened for Windows path-length compatibility.
+- New practical reports declare `pdf-content-v1` local identities. Chunk IDs depend on PDF bytes and the five clinical content fields, rather than review-folder names or chunk numbering. Retries can therefore reuse the same database rows and embeddings across new output folders. Legacy IDs and historical packages remain unchanged; historical duplicates are not migrated by this change.
+
+## Boundaries and limits
+
+`src/queue_recovery.py` contains deterministic typed recovery decisions. `src/local_rag_chat.py` owns queue persistence, supervision, heartbeat, retry scheduling and the existing HTTP/Admin boundary. Three operational columns are added idempotently to the existing local queue: attempt count, next-attempt timestamp and last error code. No content field or production schema is added.
+
+`src/visual_source.py`, `src/package_generation.py`, `src/pipeline.py` and `src/adaptive_ingestion.py` handle source recovery and resumable generation. `src/local_chunk_store.py` supports the versioned local content identity. Azure remains the sole runtime inference provider. No new dependencies are introduced.
+
+The five clinical fields, source citation/numerical checks, 90-word source minimum, quarantined rejected candidates and mandatory clinician review are preserved. Visual corroboration is not independent clinical verification. Page selection does not mean full clinical coverage: tables, figures, damaged quantities, missing references and unverified source relationships may remain held. Genuine source/service problems still require attention; no universal success guarantee for arbitrary PDFs is made.
+
+Reading more pages and packages increases paid Azure usage. This is sequential, bounded per request and finite per document; an outage does not cause an unlimited retry loop. Existing validated source artifacts are not overwritten. Runtime inputs, generated chunks, page images, transcripts and backups remain in ignored local runtime folders.
+
+## Verification
+
+Tests exercise real HTTP automatic upload dispatch; durable delayed retry and queue advancement; bounded outage/crash retries; authentication/quota classification; heartbeat protection and expired-lease recovery; source holds; retained partial drafts; supervisor recovery; image reading beyond page three; page-specific transient recovery and cache reuse; per-unit cache stability across plan changes; document-unit budget growth; content-ID deduplication; and actual pipeline validation/SQLite read-back across a later mocked Azure timeout.
+
+The full pipeline retry test caught a Windows path-length problem in the initial new cache layout. Shortened cache directories and incidental attempt filenames corrected it, and that test then passed. A live uploaded test job also encountered that initial issue before restart; it was explicitly retried using the corrected build. Completion and final regression results are recorded below after verification.
+
+Implementation checked against the installed Python 3.13.7, SQLite 3.50.4 and PyMuPDF 1.27.2.2 APIs, and official [SQLite transaction documentation](https://docs.python.org/3.13/library/sqlite3.html), [threading documentation](https://docs.python.org/3.13/library/threading.html) and [PyMuPDF page rendering documentation](https://pymupdf.readthedocs.io/en/latest/page.html#Page.get_pixmap).
+
+## Final verified results
+
+- Full offline suite: **514 passed, 2 fixture-dependent skips, 9 subtests passed in 68.62 seconds**. The two skips remain the existing unavailable source fixtures. After the final Admin reconnect/preserved-draft message changes, **48 queue/Admin tests passed in 16.43 seconds**. The generated Admin JavaScript also passed `node --check`.
+- Actual HTTP upload automatically started the queue without a Start request. A real seven-page source was read through all seven selected pages using the configured Azure deployment. Six corroborated visual source packages were retained; five draft chunks survived validation and were stored with successful database read-back. Unverified/rejected content remains held, and source coverage remains incomplete.
+- The initial live job encountered the Windows cache-path defect reported above. After fixing paths, restarting and explicitly retrying that test job, it reached `LOCAL_REVIEW_READY`. This was not an uninterrupted first-attempt success claim. The corrected end-to-end mocked timeout/storage test now passes on Windows.
+- After the final server restart: **31 LOCAL_REVIEW_READY, 0 FAILED, 0 queued, 0 waiting, 0 active**. These are the original 30 recovered jobs plus one live re-upload test job. Their stored counts total **120 drafts** (115 original plus five live-test drafts), not 120 unique new documents or clinical approvals.
+- All original 30 job IDs, terminal states and stored counts were preserved. All **31 actual SQLite/embedding read-back checks passed**. All **302 protected historical files remained unchanged**.
+- A replay of the actual live PDF replaced both Azure methods with guards. Completed page transcription caches were reused with **zero transcription requests**. Six compatible candidate units resumed; five remained acceptable, and the remaining unit's attempted further regeneration was blocked by the offline guard. There were **zero actual Azure calls**, successful storage read-back, and **no extra database rows** (301 before and after, including unrelated historical packages). This is proof of cached supported-work reuse, not proof that the unresolved unit can finish without another request.
+- `/admin` and `/bot` both returned HTTP 200 on the final build at `http://127.0.0.1:8766`. The Admin keeps polling/reconnects across brief server outages. The server supervisor runs independently of the page.
+
+Runtime evidence and the reproducible checker are in ignored `tmp/unattended-queue/`: pre-change queue/database backup, live upload response, final verification JSON, source-free verification summary, HTTP artifacts and server logs. Clinical outputs/transcriptions remain in ignored output storage. No production upload or clinician approval occurred.

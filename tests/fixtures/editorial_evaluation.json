@@ -1,0 +1,80 @@
+{
+  "version": "synthetic-editorial-evaluation-v1",
+  "clinician_reviewed": false,
+  "label_basis": "engineer_authored_fictional_source_and_examples",
+  "cases": [
+    {
+      "id": "randomized_primary",
+      "kind": "randomized_trial",
+      "topic": "Treatment alpha",
+      "subtopic": "Adults with condition delta",
+      "section": "Primary remission with treatment alpha versus placebo at 8 weeks",
+      "source": "In a randomized trial, adults with condition delta received treatment alpha or placebo for 8 weeks. The primary outcome was remission at 8 weeks. Remission occurred in 40% with treatment alpha and 38% with placebo. The difference in the primary outcome was not statistically significant. The trial did not establish equivalence between treatment alpha and placebo. Follow-up was limited to 8 weeks, and longer-term remission was not assessed. The trial excluded children and adults receiving another investigational treatment. Remission was assessed using the same protocol in both treatment groups. Outcome assessors recorded remission at the planned follow-up visit. Missing observations were retained in the study records for review, and the report did not provide a separate estimate for participants with missing observations. Applicability outside the trial population remains uncertain.",
+      "editorial": "For adults with condition delta, the randomized trial compared treatment alpha with placebo over 8 weeks. The primary outcome, remission at 8 weeks, occurred in 40% with treatment alpha and 38% with placebo. The difference in the primary outcome was not statistically significant; equivalence between treatment alpha and placebo was not established. Follow-up was limited to 8 weeks, with longer-term remission unassessed. Children and adults receiving another investigational treatment were excluded. Both groups underwent remission assessment using the same protocol at the planned follow-up visit. Missing observations remained available in the study records, but no separate estimate was reported for participants with missing observations. Applicability beyond the trial population remains uncertain.",
+      "roles": [["topic","treatment alpha"],["population","adults with condition delta"],["intervention","treatment alpha"],["comparator","placebo"],["outcome","remission"],["time_point","8 weeks"],["qualification","not statistically significant"],["limitation","Follow-up was limited to 8 weeks"]],
+      "adversaries": [
+        {"id":"swap_arms","old":"40% with treatment alpha and 38% with placebo","new":"38% with treatment alpha and 40% with placebo","expected_reason":"explicit_arm_quantity_conflict"},
+        {"id":"invent_statistic","old":"40% with treatment alpha","new":"99% with treatment alpha","expected_reason":"numeric_value_unavailable"},
+        {"id":"significance_reversal","old":"not statistically significant","new":"statistically significant","expected_reason":"significance_polarity_requires_source_review"},
+        {"id":"changed_timepoint","old":"8 weeks","new":"12 weeks","expected_reason":"numeric_value_unavailable"},
+        {"id":"swap_endpoint","old":"remission","new":"pain","expected_reason":"outcome_preservation_unverified"},
+        {"id":"swap_population","old":"adults with condition delta","new":"children with condition delta","expected_reason":"population_preservation_unverified"}
+      ]
+    },
+    {
+      "id":"review_uncertainty","kind":"review","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Limitations of observational treatment alpha evidence",
+      "source":"A narrative review considered treatment alpha for adults with condition delta. The review described observational evidence and did not establish causation. The review noted selection bias and uncertainty about applicability. Differences between the included populations prevented a single comparative estimate. The review did not recommend treatment alpha as standard care. Treatment decisions were outside the scope of the review.",
+      "editorial":"For adults with condition delta, the narrative review describes observational evidence concerning treatment alpha. Causation was not established. Selection bias and uncertain applicability limit interpretation, while differences between included populations prevented a single comparative estimate. Treatment alpha was not recommended as standard care; treatment decisions remained outside the review's scope.",
+      "roles":[["topic","treatment alpha"],["population","adults with condition delta"],["intervention","treatment alpha"],["limitation","selection bias"]],
+      "adversaries":[{"id":"invent_sample","old":"observational evidence","new":"observational evidence from 999 participants","expected_reason":"numeric_value_unavailable"}]
+    },
+    {
+      "id":"conditional_guideline","kind":"guideline","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Conditional treatment alpha guidance and evidence certainty",
+      "source":"For adults with condition delta, the panel suggests treatment alpha after shared discussion. The recommendation is conditional, with low certainty of evidence. The panel did not provide a strong recommendation. Limited follow-up and imprecision restrict interpretation. Patient preferences and feasibility were specified as implementation considerations. Applicability to children was not established.",
+      "editorial":"For adults with condition delta, the panel suggests treatment alpha following shared discussion. The recommendation remains conditional and is based on low certainty of evidence. Limited follow-up and imprecision restrict interpretation. Implementation requires consideration of patient preferences and feasibility. Applicability to children was not established; the guidance does not provide a strong recommendation.",
+      "roles":[["topic","treatment alpha"],["population","adults with condition delta"],["intervention","treatment alpha"],["recommendation_strength","conditional"],["evidence_certainty","low certainty"],["limitation","imprecision"]],
+      "adversaries":[
+        {"id":"strong_recommendation","old":"The recommendation remains conditional","new":"A strong recommendation is provided","expected_reason":"recommendation_strength_increased"},
+        {"id":"certainty_inflation","old":"low certainty","new":"high certainty","expected_reason":"evidence_certainty_increased"}
+      ]
+    },
+    {
+      "id":"procedure_sequence","kind":"procedure","topic":"Procedure lambda","subtopic":"Adults with condition delta","section":"Procedure lambda workflow and applicability limits",
+      "source":"The report described procedure lambda for adults with condition delta at the study center. The protocol required eligibility assessment before procedure lambda. The protocol specified observation after procedure lambda and recording of procedural complications. Procedure lambda was performed by the study team using the reported protocol. The report did not compare procedure lambda with another procedure. Applicability outside the study center was uncertain.",
+      "editorial":"In adults with condition delta at the study center, procedure lambda followed a protocol requiring eligibility assessment beforehand. Observation and documentation of procedural complications followed procedure lambda. The study team performed procedure lambda according to the reported protocol. No comparison with another procedure was provided, and applicability outside the study center remained uncertain.",
+      "roles":[["topic","procedure lambda"],["population","adults with condition delta"],["intervention","procedure lambda"],["limitation","Applicability outside the study center was uncertain"]],
+      "adversaries":[{"id":"invent_procedural_rate","old":"procedural complications","new":"procedural complications in 77%","expected_reason":"numeric_value_unavailable"}]
+    },
+    {
+      "id":"negative_result","kind":"negative_result","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Non-significant primary remission comparison",
+      "source":"Adults with condition delta received treatment alpha or placebo. The primary outcome was remission at 8 weeks. Remission occurred in 20% with treatment alpha and 21% with placebo. The difference was not statistically significant. The trial was underpowered. Equivalence was not established, and no conclusion about long-term remission was available.",
+      "editorial":"Among adults with condition delta, remission at 8 weeks was the primary outcome in the treatment alpha versus placebo comparison. Remission occurred in 20% with treatment alpha and 21% with placebo. The difference was not statistically significant. The underpowered trial did not establish equivalence or provide a conclusion about long-term remission.",
+      "roles":[["topic","treatment alpha"],["population","Adults with condition delta"],["intervention","treatment alpha"],["comparator","placebo"],["outcome","remission"],["time_point","8 weeks"],["limitation","underpowered"]],
+      "adversaries":[{"id":"negative_to_positive","old":"not statistically significant","new":"statistically significant","expected_reason":"significance_polarity_requires_source_review"}]
+    },
+    {
+      "id":"noninferiority","kind":"noninferiority","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Noninferiority without established superiority",
+      "source":"Adults with condition delta received treatment alpha or treatment beta. The primary outcome was remission at 8 weeks. The prespecified noninferiority criterion was met. Superiority was not assessed. The report did not establish equivalence. Interpretation was limited to the trial population and follow-up period.",
+      "editorial":"In adults with condition delta, treatment alpha was compared with treatment beta for the primary outcome of remission at 8 weeks. The prespecified noninferiority criterion was met. Superiority was not assessed, and equivalence was not established. Interpretation remains limited to the trial population and follow-up period.",
+      "roles":[["topic","treatment alpha"],["population","Adults with condition delta"],["intervention","treatment alpha"],["comparator","treatment beta"],["outcome","remission"],["time_point","8 weeks"],["qualification","Superiority was not assessed"]],
+      "adversaries":[{"id":"noninferiority_to_superiority","old":"Superiority was not assessed","new":"Treatment alpha was superior to treatment beta for remission","expected_reason":"noninferiority_or_unassessed_superiority_strengthened"}]
+    },
+    {
+      "id":"adverse_events","kind":"adverse_events","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Short-term adverse-event ascertainment",
+      "source":"Adults with condition delta received treatment alpha or placebo. Adverse events were reported in 12% with treatment alpha and 7% with placebo. Safety ascertainment was limited to 2 weeks. Delayed adverse events were not assessed. The report did not establish absence of long-term harm. The same ascertainment protocol was used for both treatment groups.",
+      "editorial":"For adults with condition delta, adverse events were reported in 12% with treatment alpha and 7% with placebo. Safety ascertainment covered only 2 weeks, using the same protocol in both treatment groups. Delayed adverse events were not assessed. The findings do not establish absence of long-term harm.",
+      "roles":[["topic","treatment alpha"],["population","Adults with condition delta"],["intervention","treatment alpha"],["comparator","placebo"],["outcome","adverse events"],["time_point","2 weeks"],["limitation","Delayed adverse events were not assessed"]],
+      "adversaries":[
+        {"id":"swap_safety_arms","old":"12% with treatment alpha and 7% with placebo","new":"7% with treatment alpha and 12% with placebo","expected_reason":"explicit_arm_quantity_conflict"},
+        {"id":"deny_events","old":"adverse events were reported in 12% with treatment alpha and 7% with placebo","new":"no adverse events occurred with treatment alpha or placebo","expected_reason":"adverse_event_negation_requires_review"}
+      ]
+    },
+    {
+      "id":"uncertain_dose","kind":"uncertain_finding","topic":"Treatment alpha","subtopic":"Adults with condition delta","section":"Recorded dose with unresolved applicability",
+      "source":"Adults with condition delta received treatment alpha. The report recorded a dose of 40 mg with treatment alpha. The report did not assess a dose-response relationship. Outcome data were incomplete, and no quantitative estimate of benefit was provided. Applicability beyond the reported population was uncertain. The recorded dose was descriptive and was not a prescribing recommendation.",
+      "editorial":"In adults with condition delta, the report describes a recorded dose of 40 mg with treatment alpha. A dose-response relationship was not assessed. Incomplete outcome data prevented a quantitative estimate of benefit. Applicability beyond the reported population remained uncertain. The recorded dose describes the report and does not constitute a prescribing recommendation.",
+      "roles":[["topic","treatment alpha"],["population","Adults with condition delta"],["intervention","treatment alpha"],["limitation","Outcome data were incomplete"]],
+      "adversaries":[{"id":"alter_dose_unit","old":"40 mg with treatment alpha","new":"40 g with treatment alpha","expected_reason":"explicit_quantity_unit_or_sign_conflict"}]
+    }
+  ]
+}
